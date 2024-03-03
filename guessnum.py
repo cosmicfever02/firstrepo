@@ -8,8 +8,17 @@ def game(name="Player"):
         nonlocal wins, rounds
         rounds += 1
 
-        print("What number am i thinking of? 1, 2 or 3?")
-        numGuess = int(input("Enter your guess: "))
+        #3-3-24, Improved guess input
+        inputCheck = False
+        while inputCheck == False:
+            print("What number am i thinking of? 1, 2 or 3?")
+            numGuess = input("Enter your guess: ")
+            if numGuess not in ["1","2","3"]:
+                print("\nGuess must be within 1, 2 and 3!")
+                continue
+            else:
+                numGuess = int(numGuess)
+                inputCheck = True
         
         num = rdm.randint(1, 3)
 
@@ -25,10 +34,3 @@ def game(name="Player"):
         print("--------")
 
     return numguessGame
-
-
-
-
-
-
-
