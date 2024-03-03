@@ -1,13 +1,25 @@
 import rps2 as rps
 import guessnum as nguess
 from sys import exit
+#3-3-24, Improved inputs for name in arcade and guess in guessnum
 
-name = input("Enter your name: ")
-name = name.title()
+nameCheck = False
+while nameCheck == False:
+    name = input("Enter your name: ")
+    if len(name) < 3:
+        print("Name must be at least 3 characters long!")
+        continue
+    elif len(name) > 25:
+        print("Name can have a max of 25 characters!")
+        continue
+    else:
+        name = name.title()
+        print(f"Hello {name}!")
+        nameCheck = True
 
 def gameChoice():
     while True:
-        gameChosen = input("Select game: \n[1] - Rock Paper Scissors \n[2] - Guess the Number \n[3] - Exit \n> ")
+        gameChosen = input("Select game: \n[1] - Rock Paper Scissors\n[2] - Guess the Number \n[3] - Exit \n> ")
 
         if gameChosen not in ["1", "2", "3"]:
             print("Try again")
