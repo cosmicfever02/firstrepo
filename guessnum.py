@@ -4,23 +4,32 @@ def game(name="Player"):
     name = name.title()
     wins = 0
     rounds = 0
+
+    numMax = 10 #(for easier customizability) pick from 1 to (numMax) 3-3-24
     def numguessGame():
         nonlocal wins, rounds
         rounds += 1
 
-        #3-3-24, Improved guess input
+        def numbers():
+            nonlocal numMax
+            numlist = []
+            for x in range(1, numMax + 1):
+                numlist.append(str(x))
+            return numlist
+        
+        #improved input 3-3-24
         inputCheck = False
         while inputCheck == False:
-            print("What number am i thinking of? 1, 2 or 3?")
+            print(f"What number am i thinking of? Pick a number from 1 to {numMax}!")
             numGuess = input("Enter your guess: ")
-            if numGuess not in ["1","2","3"]:
-                print("\nGuess must be within 1, 2 and 3!")
+            if numGuess not in numbers():
+                print(f"\nGuess must be within 1-{numMax}!")
                 continue
             else:
                 numGuess = int(numGuess)
                 inputCheck = True
         
-        num = rdm.randint(1, 3)
+        num = rdm.randint(1, numMax)
 
         if numGuess == num:
             print(f"{name}, you are correct!")
@@ -32,5 +41,11 @@ def game(name="Player"):
         print(f"Rounds: {rounds}")
         print(f"Your win percentage: {wins / rounds:.2%}")
         print("--------")
+
+    return numguessGame
+
+if __name__ == "__main__":
+    nguess = game()
+    nguess()
 
     return numguessGame
